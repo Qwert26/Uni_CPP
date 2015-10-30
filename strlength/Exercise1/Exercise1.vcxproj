@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{779524DA-0C67-4176-B36C-FE6253AB7B5C}</ProjectGuid>
+    <ProjectGuid>{DCA51CB4-02F4-43BE-9A1A-1A361853AA24}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Exercise1</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
@@ -146,7 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Cubes.cpp" />
+    <ClCompile Include="StringLength.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Cubes.cpp">
+    <ClCompile Include="StringLength.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
