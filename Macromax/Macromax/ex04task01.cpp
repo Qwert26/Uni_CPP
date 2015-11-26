@@ -2,7 +2,7 @@
 /*
 Von einer Website abgeguckt, nur den Vergleichsoperator vertauscht.
 */
-#define MAXM(A,B) ((A)<(B)?(B):(A))
+#define MAXM(A,B) (A<B?B:A)
 /*
 Nimmt zwei ints und gibt das groessere zurueck.
 */int maxf(int a,int b) {
