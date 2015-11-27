@@ -5,11 +5,14 @@ private:
 	int count=0;
 	int *data=nullptr;
 public:
-	Stack(int);
+	explicit Stack(int);
+	Stack(void);
+	Stack(const Stack& other);
 	virtual ~Stack();
 	bool isFull();
 	bool isEmpty();
 	void push(int);
 	int pop(void);
 	void show(void);
+	Stack& operator=(const Stack& other);
 };
