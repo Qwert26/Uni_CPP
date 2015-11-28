@@ -49,14 +49,18 @@ bool Stack::isFull() {
 bool Stack::isEmpty() {
 	return count==0;
 }
-void Stack::push(int i) {
+/*
+* Setzt den übergebenen Wert auf den Stack, wenn noch Platz da ist.
+*/void Stack::push(int i) {
 	if (!isFull()) {
 		data[count++] = i;
 	} else {
 		std::cout << "The stack is full\n";
 	}
 }
-int Stack::pop(void) {
+/*
+* Gibt den zuletzt hinzugefügten Wert zurück, wenn es keinen gibt, wird 0 zurückgegeben.
+*/int Stack::pop(void) {
 	if (!isEmpty()) {
 		return data[--count];
 	} else {
@@ -64,17 +68,22 @@ int Stack::pop(void) {
 		return 0;
 	}
 }
-void Stack::show(void) {
+/*
+* Zeigt den aktuellen Inhalt des Stacks.
+*/void Stack::show(void) {
 	for (int i = 0; i < count;i++) {
 		std::cout << data[i] << " ";
 	}
 	std::cout << std::endl;
 }
-Stack& Stack::operator=(const Stack& other) {
+/*
+* Kopiert den anderen Stack in diesen.
+*/Stack& Stack::operator=(const Stack& other) {
 	std::cout << "Cop= called\n";
 	if (this != &other) {
 		free(data);
 		size = other.size;
+		count = 0;
 		data = (int*)malloc(sizeof(int)*size);
 		for (int c = 0; c < other.count;c++) {
 			push(other.data[c]);
@@ -82,7 +91,9 @@ Stack& Stack::operator=(const Stack& other) {
 	}
 	return *this;
 }
-Stack& Stack::operator=(Stack&& other) {
+/*
+* Bewegt den Inhalt des anderen Stack in diesen.
+*/Stack& Stack::operator=(Stack&& other) {
 	std::cout<<"Mop= called\n";
 	if(this!=&other) {
 		free(data);
