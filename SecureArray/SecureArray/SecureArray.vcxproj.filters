@@ -23,7 +23,7 @@
     <ClCompile Include="secarr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Test.cpp">
+    <ClCompile Include="secarrtest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

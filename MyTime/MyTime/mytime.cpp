@@ -43,7 +43,7 @@ MyTime& MyTime::operator+=(const int other) {
 	minutes %= 60;
 	return *this;
 }
-MyTime::operator int() {
+MyTime::operator int() const {
 	return seconds + 60 * (minutes + 60 * hours);
 }
 std::ostream& operator<<(std::ostream& o,MyTime& time) {

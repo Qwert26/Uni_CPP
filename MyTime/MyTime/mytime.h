@@ -19,5 +19,5 @@ public:
 	MyTime& operator+=(const MyTime&);
 	MyTime& operator+=(const int);
 	friend std::ostream& operator<<(std::ostream&,MyTime&);
-	operator int();
+	operator int() const;
 };

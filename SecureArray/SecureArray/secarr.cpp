@@ -34,6 +34,7 @@ SecArr& SecArr::operator++() {
 	} else {
 		cout << "Invalid index\n";
 	}
+	return *this;
 }
 SecArr & SecArr::operator--() {
 	if (current > start) {
@@ -41,6 +42,7 @@ SecArr & SecArr::operator--() {
 	} else {
 		cout << "Invalid index\n";
 	}
+	return *this;
 }
 SecArr SecArr::operator++(int) {
 	SecArr ret(*this);
