@@ -1,4 +1,5 @@
 #include "VirtDer.h"
+#include <iostream>
 VirtDer::VirtDer() {
 	i = 0;
 }
