@@ -27,6 +27,9 @@
     <ClInclude Include="VirtDer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\TimeTest\TimeTest\StopWatch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PureBase.cpp">
@@ -39,6 +42,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\TimeTest\TimeTest\StopWatch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

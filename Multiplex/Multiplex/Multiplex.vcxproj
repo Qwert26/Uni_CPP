@@ -146,12 +146,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\TimeTest\TimeTest\StopWatch.h" />
     <ClInclude Include="PureBase.h" />
     <ClInclude Include="StaticBase.h" />
     <ClInclude Include="VirtBase.h" />
     <ClInclude Include="VirtDer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\TimeTest\TimeTest\StopWatch.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PureBase.cpp" />
     <ClCompile Include="VirtBase.cpp" />
