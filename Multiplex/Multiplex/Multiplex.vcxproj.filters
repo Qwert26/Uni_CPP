@@ -41,10 +41,10 @@
     <ClCompile Include="VirtDer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="..\..\TimeTest\TimeTest\StopWatch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\TimeTest\TimeTest\StopWatch.cpp">
+    <ClCompile Include="overhead.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

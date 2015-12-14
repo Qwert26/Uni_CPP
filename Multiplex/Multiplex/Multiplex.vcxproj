@@ -101,7 +101,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;VERBOSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;VERBOSE;TASK03;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -154,7 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\TimeTest\TimeTest\StopWatch.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="overhead.cpp" />
     <ClCompile Include="PureBase.cpp" />
     <ClCompile Include="VirtBase.cpp" />
     <ClCompile Include="VirtDer.cpp" />
