@@ -17,6 +17,7 @@ int main(void) {
 	VirtBase *pvbase = new VirtBase();
 	VirtDer *pvder = new VirtDer();
 	VirtBase *pvbaseder = pvder;
+	//Beginn Aufgabe 1a:
 	#ifdef VERBOSE
 		//Direkter Aufruf der Methode
 		pure.myFunc();
@@ -38,6 +39,7 @@ int main(void) {
 		(*pvbaseder).nvFunc();
 		(*pvbaseder).virtFunc();
 	#endif
+	//Beginn Aufgabe 1b:
 	#ifdef TASK02
 		MEASURETIME("pure.myFunc()", 50000000, pure.myFunc();)
 		MEASURETIME("vbase.nvFunc()", 50000000, vbase.nvFunc();)
@@ -55,7 +57,23 @@ int main(void) {
 		MEASURETIME("(*pvbaseder).nvFunc()", 50000000, (*pvbaseder).nvFunc();)
 		MEASURETIME("(*pvbaseder).virtFunc()", 50000000, (*pvbaseder).virtFunc();)
 	#endif
+	//Beginn Aufgabe 1c:
 	#ifdef TASK03
-
+		//Der dc überprüft ebenfalls, ob das Downcasten funktioniert. In Java: instanceof
+		VirtDer* casted = dynamic_cast<VirtDer*>(pvbaseder);
+		//Hat es funktioniert?
+		if (casted) {
+			casted->myFunc();
+		} else {
+			std::cerr << "Conversion failed!";
+		}
+		//Der sc überprüft nicht die Typsicherheit!
+		casted = static_cast<VirtDer*>(pvbaseder);
+		//Manuelle Überprüfung
+		if (typeid(*casted) == typeid(VirtDer)) {
+			casted->myFunc();
+		} else {
+			std::cerr << "Conversion failed!";
+		}
 	#endif
 }
