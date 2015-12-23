@@ -7,6 +7,7 @@ class StringPrinter {
 public:
 	virtual ~StringPrinter() {}
 	virtual void doPrint(string&s) = 0;
+	//Macht die Konvertierung vom C-string zum C++-string und ruft dann doPrint auf.
 	void print(const char*s) {
 		string news(s);
 		doPrint(news);
@@ -23,7 +24,7 @@ public:
 		output<<'|'<<s<<'|';
 	}
 };
-//Superklasse für konkrete Dekoratoren.
+//Abstrakte Superklasse für konkrete Dekoratoren.
 class StringDecorator:public StringPrinter {
 protected:
 	StringPrinter*stringComponent;
@@ -35,6 +36,7 @@ public:
 		//Ob das Sinn macht?
 		//delete stringComponent;
 	}
+	virtual void doPrint(string&s) = 0;
 };
 //Entfernt alle Leerzeichen vom Anfang und Ende eines strings.
 class StringTrim:public StringDecorator {
@@ -49,6 +51,7 @@ public:
 		while (isspace(s.front())) {
 			s.erase(0,1);
 		}
+		//Mache weitere Sachen
 		stringComponent->doPrint(s);
 	}
 };
@@ -58,12 +61,13 @@ public:
 	StringAlphaNum(StringPrinter*component):StringDecorator(component) {}
 	virtual void doPrint(string&s) {
 		size_t length = s.length();
-		for (size_t index = 0; index < length; index++) {
+		for (size_t index = 0; index < length;++index) {
 			//Wenn Zahl oder Buchstabe ersetze mit Leerzeichen.
 			if (isalnum(s[index])) {
 				s[index] = ' ';
 			}
 		}
+		//Mache weitere Sachen.
 		stringComponent->doPrint(s);
 	}
 };
@@ -72,7 +76,15 @@ class StringCompress :public StringDecorator {
 public:
 	StringCompress(StringPrinter*component):StringDecorator(component) {}
 	virtual void doPrint(string&s) {
-
+		//Während des Durchlaufs wird sich die Länge ändern!
+		for (size_t index = 0; index < s.length()-1; ++index) {
+			//Wenn das aktuelle und das nächste Zeichen ein Leerzeichen ist, dann lösche das aktuelle und reduziere den index um 1.
+			if (isspace(s[index])&&isspace(s[index+1])) {
+				s.erase(index, 1);
+				--index;
+			}
+		}
+		//Mache weitere Sachen
 		stringComponent->doPrint(s);
 	}
 };
