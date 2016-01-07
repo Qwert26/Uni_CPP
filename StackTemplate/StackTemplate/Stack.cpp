@@ -41,6 +41,7 @@ int main(void) {
 	} catch (StackException&se) {
 		cerr << se.what() << endl;
 	}
+	return 0;
 }
 template<typename T, int size>
 bool Stack<T, size>::isfull() {
