@@ -26,17 +26,18 @@ public:
 };
 //Abstrakte Superklasse für konkrete Dekoratoren.
 class StringDecorator:public StringPrinter {
-protected:
+private:
 	StringPrinter*stringComponent;
 public:
 	StringDecorator(StringPrinter*component) {
 		stringComponent = component;
 	}
 	virtual ~StringDecorator() {
-		//Ob das Sinn macht?
-		//delete stringComponent;
+		delete stringComponent;
 	}
-	virtual void doPrint(string&s) = 0;
+	virtual void doPrint(string&s) {
+		stringComponent->doPrint(s);
+	}
 };
 //Entfernt alle Leerzeichen vom Anfang und Ende eines strings.
 class StringTrim:public StringDecorator {
@@ -52,7 +53,7 @@ public:
 			s.erase(0,1);
 		}
 		//Mache weitere Sachen
-		stringComponent->doPrint(s);
+		StringDecorator::doPrint(s);
 	}
 };
 //Konvertiert alle Buchstaben und Zahlen zu Leerzeichen.
@@ -68,7 +69,7 @@ public:
 			}
 		}
 		//Mache weitere Sachen.
-		stringComponent->doPrint(s);
+		StringDecorator::doPrint(s);
 	}
 };
 //Komprimiert den String.
@@ -85,7 +86,7 @@ public:
 			}
 		}
 		//Mache weitere Sachen
-		stringComponent->doPrint(s);
+		StringDecorator::doPrint(s);
 	}
 };
 int main(void) {
