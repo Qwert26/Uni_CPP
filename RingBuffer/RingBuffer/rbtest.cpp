@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdexcept>
-#include "ringbuffer.hpp"
+#include "ringbuffer2.hpp"
 int main(void) {
 	RingBuffer<int, 3> rb;
 	rb.print();

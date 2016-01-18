@@ -64,6 +64,7 @@ public:
 };
 //TODO: provide implementations of the overloaded I/O operators
 std::vector<Signal> readSignals(const char* filepath) {
+	std::cout << "Reading signals from "<<filepath<<std::endl;
 	std::ifstream in(filepath);
 	Signal s;
 	std::vector<Signal> ret;
@@ -89,6 +90,7 @@ std::vector<Signal> filterSignals(SignalType type, std::vector<Signal>& signalRe
 	return ret;
 }
 void writeSignals(const char* outputFilename, const std::vector<Signal> aggregatedSignals) {
+	std::cout << "Writing signals to " << outputFilename << std::endl;
 	std::ofstream out(outputFilename);
 	const size_t l = aggregatedSignals.size();
 	for (size_t i = 0; i < l;++i) {
