@@ -149,6 +149,9 @@
     <Text Include="smarthome_temp.txt" />
     <Text Include="smarthome_window.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="jarvis.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

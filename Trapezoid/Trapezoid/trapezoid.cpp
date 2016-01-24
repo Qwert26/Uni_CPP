@@ -1,5 +1,6 @@
 #include <cmath>
 #include <iostream>
+#include <fstream>
 #include <thread>
 #include <string>
 using namespace std;
@@ -41,7 +42,7 @@ int main(const int length,const char*args[]) {
 	}
 	//Lese die anzahl der Threads ein.
 	threadCount = stoi(args[1]);
-	if (threadCount == 0) {
+	if (threadCount <= 0) {
 		cout << "Wrong arguments" << endl;
 		return 0;
 	}
