@@ -38,8 +38,12 @@ Hat sich der aktuelle Status gegenüber des vorherigen verändert oder sind beide 
 bool updateOccured() noexcept {
 	return (prevState.temp!=currentState.temp)|(prevState.window!=currentState.window)|(temperatureTerminated&windowTerminated);
 }
+/*
+Liest alle 200ms einen neuen Temperaturwert ein.
+*/
 void temperatureReader() {
 	double readed;
+	//Gibt es noch etwas zum einlesen?
 	while (temperatureInput) {
 		temperatureInput >> readed;
 		{
@@ -59,8 +63,12 @@ void temperatureReader() {
 	//Sage den anderen Threads, dass du terminiert bist.
 	cv.notify_all();
 }
+/*
+Liest alle 500ms den aktuellen Fensterstatus ein.
+*/
 void windowReader() {
 	string readed;
+	//Gibt es noch etwas zum einlesen?
 	while (windowInput) {
 		windowInput >> readed;
 		{
@@ -105,6 +113,7 @@ int main(const int length,const char*args[]) {
 			//Erzeuge den Unterschied.
 			const char diff = prevState.operator char()^currentState.operator char();
 			switch (diff) {
+				//Nichts hat sich verändert...
 				case 0:
 					break;
 				//Das Fenster hat sich geändert.
@@ -199,6 +208,7 @@ int main(const int length,const char*args[]) {
 			prevState.window = currentState.window;
 		}
 	} while (!(temperatureTerminated&windowTerminated));
+	//Safety joins
 	temperatureThread.join();
 	windowThread.join();
 	return 0;
