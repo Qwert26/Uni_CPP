@@ -3,6 +3,7 @@
 #include <list>
 #include <utility> //std::pair
 #include <iostream>
+#include <algorithm> //std::remove_if
 using namespace std;
 /*
 Füllt einen Container mit den Zahlen 2 bis 64 auf.
@@ -42,6 +43,17 @@ template<typename Container>void printNext3(Container&con,typename Container::it
 		cout << *iter << " ";
 	}
 	cout << endl;
+}
+bool isOdd(long l) {
+	return (l & 1) == 1;
+}
+template<typename Container>void deleteOddFunctor(Container&con) {
+	Container::iterator newEnd=remove_if(con.begin(),con.end(),isOdd);
+	con.erase(newEnd,con.end());
+}
+template<typename Container>void deleteOddLambda(Container&con) {
+	Container::iterator newEnd = remove_if(con.begin(), con.end(),[](long l){return (l & 1) == 1;});
+	con.erase(newEnd, con.end());
 }
 int main() {
 	//Deklarationen
@@ -85,7 +97,37 @@ int main() {
 	v.insert(positionV.second, 31);
 	printNext3(v, positionV.first);
 
+	//31 in deque einfügen:
+	pair<deque<long>::iterator, deque<long>::iterator> positionD = findPosition(d, 31);
+	positionD.first--;
+	positionD.first--;
+	positionD.second--;
+	d.insert(positionD.second, 31);
+	printNext3(d, positionD.first);
+
+	//31 in list einfügen:
+	pair<list<long>::iterator, list<long>::iterator> positionL = findPosition(l, 31);
+	positionL.first--;
+	positionL.second--;
+	l.insert(positionL.second, 31);
+	printNext3(l,positionL.first);
+
 	#elif defined(FIX_B)
+
+	//31 in vector einfügen:
+	pair<vector<long>::iterator, vector<long>::iterator> positionV = findPosition(v, 31);
+	vector<long>::iterator posV=v.insert(positionV.second, 31);
+	printNext3(v, positionV.first);
+
+	//31 in deque einfügen:
+	pair<deque<long>::iterator, deque<long>::iterator> positionD = findPosition(d, 31);
+	d.insert(positionD.second, 31);
+	printNext3(d, positionD.first);
+
+	//31 in list einfügen:
+	pair<list<long>::iterator, list<long>::iterator> positionL = findPosition(l, 31);
+	l.insert(positionL.second, 31);
+	printNext3(l, positionL.first);
 
 	#else
 
@@ -105,6 +147,16 @@ int main() {
 	printNext3(l,positionL.first);
 
 	#endif
+
+	//Ausdrucken
+	print(v);
+	print(d);
+	print(l);
+
+	//Ungerade Zahlen entfernen
+	deleteOddFunctor(v);
+	deleteOddLambda(d);
+	deleteOddFunctor(l);
 
 	//Ausdrucken
 	print(v);
