@@ -17,8 +17,8 @@ template<typename Container>void fill(Container&con) {
 Druckt einen kompletten Container aus.
 */
 template<typename Container>void print(Container&con) {
-	typename Container::iterator start = con.begin();
-	typename Container::iterator end = con.end();
+	typename Container:: iterator start = con.begin();
+	typename Container:: iterator end = con.end();
 	for (;start!=end;++start) {
 		cout << *start<<" ";
 	}
@@ -27,21 +27,21 @@ template<typename Container>void print(Container&con) {
 /*
 Findet die zwei Postionen, die vor und nach dem übergebenen Wert sind. Im falle von 31 sollte das eine Zahl kleiner als diese sein und eine die größer oder gleich groß ist.
 */
-template<typename Container> pair<typename Container::iterator,typename Container::iterator> findPosition(Container&con,const long value) {
-	typename Container::iterator iter = con.begin();
+template<typename Container> pair<typename Container:: iterator,typename Container:: iterator> findPosition(Container&con,const long value) {
+	typename Container:: iterator iter = con.begin();
 	for (;*iter<value;++iter) {}
 	if (iter == con.begin()) {
 		return make_pair(iter, iter);
 	} else {
-		Container::iterator next(iter);
+		typename Container:: iterator next(iter);
 		++next;
-		return make_pair(iter, next);
+		return std::make_pair(iter, next);
 	}
 }
 /*
 Druckt die nächsten drei Elemente eines Containers aus, inklusive dem Element, auf das der übergebene Iterator zeigt.
 */
-template<typename Container>void printNext3(Container&con,typename Container::iterator iter) {
+template<typename Container>void printNext3(Container&con,typename Container:: iterator iter) {
 	for (char count = 0; count < 3 & iter != con.end(); count++,++iter) {
 		cout << *iter << " ";
 	}
@@ -54,7 +54,7 @@ bool isOdd(long l) {
 Nutzt die Funktion isOdd(long) um sämtliche ungerade Zahlen zu entfernen. Anschließend muss der Container noch auf sein neues Ende zugeschnitten werden.
 */
 template<typename Container>void deleteOddFunctor(Container&con) {
-	typename Container::iterator newEnd=remove_if(con.begin(),con.end(),isOdd);
+	typename Container:: iterator newEnd=remove_if(con.begin(),con.end(),isOdd);
 	con.erase(newEnd,con.end());
 }
 /*
@@ -63,7 +63,7 @@ Anschließend muss der Container noch auf sein neues Ende zugeschnitten werden.
 Ansonsten würde der letzte Eintrag mehrfach erscheinen.
 */
 template<typename Container>void deleteOddLambda(Container&con) {
-	typename Container::iterator newEnd = remove_if(con.begin(), con.end(),[](long l){return (l & 1) == 1;});
+	typename Container:: iterator newEnd = remove_if(con.begin(), con.end(),[](long l){return (l & 1) == 1;});
 	con.erase(newEnd, con.end());
 }
 int main() {
@@ -155,17 +155,17 @@ int main() {
 	#else
 
 	//31 in vector einfügen:
-	pair<vector<long>::iterator,vector<long>::iterator> positionV = findPosition(v, 31);
+	pair<vector<long>::iterator,vector<long>::iterator> positionV = findPosition<vector<long>>(v, 31);
 	v.insert(positionV.second,31);
 	printNext3(v,positionV.first);
 
 	//31 in deque einfügen:
-	pair<deque<long>::iterator,deque<long>::iterator> positionD = findPosition(d, 31);
+	pair<deque<long>::iterator,deque<long>::iterator> positionD = findPosition<deque<long>>(d, 31);
 	d.insert(positionD.second, 31);
 	printNext3(d,positionD.first);
 
 	//31 in list einfügen:
-	pair<list<long>::iterator,list<long>::iterator> positionL = findPosition(l, 31);
+	pair<list<long>::iterator,list<long>::iterator> positionL = findPosition<list<long>>(l, 31);
 	l.insert(positionL.second, 31);
 	printNext3(l,positionL.first);
 
