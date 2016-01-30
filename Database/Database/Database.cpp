@@ -43,7 +43,7 @@ int main() {
 			if (keyPos != data.end()) {
 				lines &content = (*keyPos).second;
 				//Wer braucht schon std::for_each?
-				for each (int l in content) {
+				for(int l:content) {
 					cout << l << " ";
 				}
 				cout << endl;
