@@ -17,8 +17,8 @@ template<typename Container>void fill(Container&con) {
 Druckt einen kompletten Container aus.
 */
 template<typename Container>void print(Container&con) {
-	Container::iterator start = con.begin(); 
-	Container::iterator end = con.end();
+	typename Container::iterator start = con.begin();
+	typename Container::iterator end = con.end();
 	for (;start!=end;++start) {
 		cout << *start<<" ";
 	}
@@ -28,7 +28,7 @@ template<typename Container>void print(Container&con) {
 Findet die zwei Postionen, die vor und nach dem übergebenen Wert sind. Im falle von 31 sollte das eine Zahl kleiner als diese sein und eine die größer oder gleich groß ist.
 */
 template<typename Container> pair<typename Container::iterator,typename Container::iterator> findPosition(Container&con,const long value) {
-	Container::iterator iter = con.begin();
+	typename Container::iterator iter = con.begin();
 	for (;*iter<value;++iter) {}
 	if (iter == con.begin()) {
 		return make_pair(iter, iter);
@@ -54,7 +54,7 @@ bool isOdd(long l) {
 Nutzt die Funktion isOdd(long) um sämtliche ungerade Zahlen zu entfernen. Anschließend muss der Container noch auf sein neues Ende zugeschnitten werden.
 */
 template<typename Container>void deleteOddFunctor(Container&con) {
-	Container::iterator newEnd=remove_if(con.begin(),con.end(),isOdd);
+	typename Container::iterator newEnd=remove_if(con.begin(),con.end(),isOdd);
 	con.erase(newEnd,con.end());
 }
 /*
@@ -63,7 +63,7 @@ Anschließend muss der Container noch auf sein neues Ende zugeschnitten werden.
 Ansonsten würde der letzte Eintrag mehrfach erscheinen.
 */
 template<typename Container>void deleteOddLambda(Container&con) {
-	Container::iterator newEnd = remove_if(con.begin(), con.end(),[](long l){return (l & 1) == 1;});
+	typename Container::iterator newEnd = remove_if(con.begin(), con.end(),[](long l){return (l & 1) == 1;});
 	con.erase(newEnd, con.end());
 }
 int main() {
