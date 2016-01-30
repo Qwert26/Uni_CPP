@@ -24,6 +24,9 @@ template<typename Container>void print(Container&con) {
 	}
 	cout << endl;
 }
+/*
+Findet die zwei Postionen, die vor und nach dem übergebenen Wert sind. Im falle von 31 sollte das eine Zahl kleiner als diese sein und eine die größer oder gleich groß ist.
+*/
 template<typename Container> pair<typename Container::iterator,typename Container::iterator> findPosition(Container&con,const long value) {
 	Container::iterator iter = con.begin();
 	for (;*iter<value;++iter) {}
@@ -47,10 +50,18 @@ template<typename Container>void printNext3(Container&con,typename Container::it
 bool isOdd(long l) {
 	return (l & 1) == 1;
 }
+/*
+Nutzt die Funktion isOdd(long) um sämtliche ungerade Zahlen zu entfernen. Anschließend muss der Container noch auf sein neues Ende zugeschnitten werden.
+*/
 template<typename Container>void deleteOddFunctor(Container&con) {
 	Container::iterator newEnd=remove_if(con.begin(),con.end(),isOdd);
 	con.erase(newEnd,con.end());
 }
+/*
+Nutzt einen Lambda-Ausdruck um sämtliche ungerade Zahlen zu entfernen.
+Anschließend muss der Container noch auf sein neues Ende zugeschnitten werden.
+Ansonsten würde der letzte Eintrag mehrfach erscheinen.
+*/
 template<typename Container>void deleteOddLambda(Container&con) {
 	Container::iterator newEnd = remove_if(con.begin(), con.end(),[](long l){return (l & 1) == 1;});
 	con.erase(newEnd, con.end());
@@ -117,17 +128,29 @@ int main() {
 	//31 in vector einfügen:
 	pair<vector<long>::iterator, vector<long>::iterator> positionV = findPosition(v, 31);
 	vector<long>::iterator posV=v.insert(positionV.second, 31);
-	printNext3(v, positionV.first);
+	long value = *(--posV);
+	v.erase(posV);
+	v.insert(++posV, value);
+	//Revalidierung des Iterators.
+	printNext3(v,--positionV.first);
 
 	//31 in deque einfügen:
 	pair<deque<long>::iterator, deque<long>::iterator> positionD = findPosition(d, 31);
-	d.insert(positionD.second, 31);
-	printNext3(d, positionD.first);
+	deque<long>::iterator posD=d.insert(positionD.second, 31);
+	value = *(--posD);
+	d.erase(posD);
+	d.insert(++(++posD), value);
+	//Revalidierung des Iterators.
+	printNext3(d,--(--positionD.first));
 
 	//31 in list einfügen:
 	pair<list<long>::iterator, list<long>::iterator> positionL = findPosition(l, 31);
-	l.insert(positionL.second, 31);
-	printNext3(l, positionL.first);
+	list<long>::iterator posL=l.insert(positionL.second, 31);
+	value = *(--posL);
+	l.erase(posL);
+	l.insert(++(++posL), value);
+	//Revalidierung des Iterators.
+	printNext3(l,--positionL.first);
 
 	#else
 
