@@ -3,19 +3,19 @@
 #include <time.h>
 #include <string>
 int main(int length,char**args) {
+	using namespace std;
 	time_t now;
 	time(&now);
 	tm *timeInfo = &tm();
-	localtime_s(timeInfo,&now);
 	char prefix[64];
-	strftime(prefix,64,"%d.%m.%Y %R:%S",timeInfo);
-	std::string filename(prefix);
-	filename.append(" log.txt");
-	std::ofstream log(filename);
-	char in;
+	ofstream log("mytee.log",ofstream::app);
+	string in;
 	while (std::cin>>in) {
 		log << in;
-		std::cout << in;
+		localtime_s(timeInfo, &now);
+		strftime(prefix, 64, "%d.%m.%Y %R:%S", timeInfo);
+		cout << in << endl;
+		log << prefix << " " << in << endl;
 	}
 	return 0;
 }
