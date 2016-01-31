@@ -1,6 +1,9 @@
+#define _CRT_SECURE_NO_WARNINGS 1
 #include <iostream>
 #include <fstream>
 #include <time.h>
+#include <ctime>
+#include <chrono>
 #include <string>
 int main(int length,char**args) {
 	using namespace std;
@@ -11,7 +14,7 @@ int main(int length,char**args) {
 	string in;
 	while (getline(cin,in)) {
 		time(&now);
-		localtime_s(&timeInfo, &now);
+		timeInfo=*localtime(&now);
 		strftime(prefix, 64, "%d.%m.%Y %R:%S",&timeInfo);
 		cout << in << endl;
 		log << prefix << " " << in << endl;
