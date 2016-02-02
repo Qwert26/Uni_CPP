@@ -10,7 +10,7 @@ int main() {
 	map<string, lines> data;
 	int line = 1;
 	string input;
-	while (cin >> input) {
+	while (getline(cin,input)) {
 		//Wenn ein einzelner Punkt, gehe aus der Schleife raus.
 		if (input.compare(".") == 0) {
 			break;
@@ -32,7 +32,7 @@ int main() {
 			++line;
 		}
 	}
-	while (cin >> input) {
+	while (getline(cin,input)) {
 		//Wenn ein einzelner Punkt, gehe aus der Schleife raus.
 		if (input.compare(".") == 0) {
 			break;
