@@ -147,6 +147,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="hashtable.h" />
+    <ClInclude Include="memcheck.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="memcheck.cpp" />
+    <ClCompile Include="memleak.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

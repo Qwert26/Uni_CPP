@@ -47,7 +47,7 @@ public:
 				content[i].second = value;
 				return true;
 			}
-			i++;
+			i=(i+1)%TABLESIZE;
 		} while (i != lastTry);
 		//Wir sind jetzt einmal im Array rumgegangen...
 		return false;
@@ -68,7 +68,7 @@ public:
 					return &(content[i].second);
 				}
 			}
-			i++;
+			i = (i + 1) % TABLESIZE;
 		} while (lastTry != i);
 		//Wir sind jetzt einmal im Array rumgegangen...
 		return nullptr;
@@ -76,11 +76,34 @@ public:
 	/*
 	Druckt den Inhalt der Hashtable aus.
 	*/
-	void print() noexcept const {
+	void print() {
 		for (unsigned int i = 0; i < TABLESIZE; i++) {
 			if (used[i]) {
 				std::cout << content[i].first << "=" << content[i].second << std::endl;
 			}
 		}
+	}
+	/*
+	Entfernt ein Schlüssel-Wert-Paar aus der HashTable
+	*/
+	bool remove(const keyT &key) noexcept {
+		//erwarteter Index
+		unsigned int i = hash(key);
+		const unsigned int lastTry = i;
+		const unsigned int fullHash = hash_M(key);
+		do {
+			//Ist die Zelle belegt?
+			if (used[i]) {
+				//Hashcodes gleich?
+				if (fullHash == hash_M(content[i].first)) {
+					//Markiere als frei. (Fake-delete)
+					used[i] = false;
+					return true;
+				}
+			}
+			i = (i + 1) % TABLESIZE;
+		} while (lastTry != i);
+		//Wir sind jetzt einmal im Array rumgegangen...
+		return false;
 	}
 };

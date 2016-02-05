@@ -18,5 +18,16 @@
     <ClInclude Include="hashtable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="memcheck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="memleak.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="memcheck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
