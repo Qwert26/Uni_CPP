@@ -2,9 +2,9 @@
 #ifndef _MEMCHECK_HPP_
 #define _MEMCHECK_HPP_
 
-#define DEBUG
+//#define _DEBUG
 
-#ifdef DEBUG
+#ifdef _DEBUG
 #include <iostream>
 #endif
 #include <cstdlib>
@@ -20,7 +20,7 @@ void memchecker_print_allocated(void);
 
 inline void* operator new(size_t size, char const *file, int line){
 	void *ptr = malloc(size);
-	#ifdef DEBUG
+	#ifdef _DEBUG
 	std::cout << "alloc " << ptr << std::endl;
 	#endif
 	memchecker_checknew(ptr, file, line, false);
@@ -29,7 +29,7 @@ inline void* operator new(size_t size, char const *file, int line){
 
 inline void* operator new[](size_t size, char const *file, int line) {
 	void *ptr = malloc(size);
-	#ifdef DEBUG
+	#ifdef _DEBUG
 	std::cout << "alloc[] " << ptr << std::endl;
 	#endif
 	memchecker_checknew(ptr, file, line, true);
@@ -37,7 +37,7 @@ inline void* operator new[](size_t size, char const *file, int line) {
 }
 
 inline void operator delete(void *ptr) {
-	#ifdef DEBUG
+	#ifdef _DEBUG
 	std::cout << "free " << ptr << std::endl;
 	#endif
 	memchecker_checkdelete(ptr, false);
@@ -45,7 +45,7 @@ inline void operator delete(void *ptr) {
 }
 
 inline void operator delete[](void *ptr) {
-	#ifdef DEBUG
+	#ifdef _DEBUG
 	std::cout << "free[] " << ptr << std::endl;
 	#endif
 	memchecker_checkdelete(ptr, true);
