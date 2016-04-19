@@ -2,7 +2,6 @@
 // this is the code from the exercise sheet. use it where needed...
 #define TABLESIZE_POW 5
 #define TABLESIZE (1 << TABLESIZE_POW)
-
 #include <utility> //std::pair
 #include <iostream> //std::cout
 template<typename keyT, typename T>class HashTable {
